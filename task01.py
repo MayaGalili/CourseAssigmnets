@@ -1,26 +1,40 @@
-# Feel free to change anything in this code, e.g.
-# add or remove variables and functions. If you don't
-# like it, you can delete it and start from scratch.
-
 import sys
+import numpy as np
 
-MAX_VAL = 50
-MIN_VAL = 1
+"""
+TASK 01 - 
+For the given integer N, print snake matrix.
+Odd lines should be increasing, 
+even lines should be decreasing.
+"""
 
-# n = int(sys.stdin.readline())
-n = 3
+def run():
+    n = int(sys.stdin.readline())
+    assert n <= 50
+    assert n >= 1
 
-assert n <= MAX_VAL
-assert n >= MIN_VAL
+    res_mat = np.array(range(1, n ** 2 + 1))
 
-res = ""
-i = MIN_VAL
-for i in range(MIN_VAL, n ** 2+1):
-    res += str(i)
-    if i % n == 0:
-        res +='\n'
-    else:
-        res += ' '
+    double_end = res_mat % (2 * n) == 0
+    not_double_end = res_mat % (2 * n) != 0
+    single_end = res_mat % n == 0
 
-print('*****************************************')
-print(res)
+    change_to_start = np.where(double_end)[0]
+    change_to_end = np.where(single_end & not_double_end)[0] + 1
+    add_end = np.where(single_end)[0]
+
+    for start_idx, end_idx in zip(change_to_start, change_to_end):
+        res_mat[end_idx: start_idx + 1] = np.flip(res_mat[end_idx: start_idx + 1])
+
+    res = list()
+    for idx, val in enumerate(res_mat):
+        if idx in add_end:
+            res.append(str(val) + '\n')
+        else:
+            res.append(str(val) + ' ')
+
+    print("".join(res))
+
+
+if __name__ == "__main__":
+    run()
