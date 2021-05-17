@@ -1,7 +1,8 @@
 import sys
 
 """
-TASK 04 - for a given airports with direct flights between them and trips returns all flights from an origin to a 
+TASK 04 - 
+for a given airports with direct flights between them and trips returns all flights from an origin to a 
 destination airports with exactly one stopover between them sorted lexicographically.
 One line for each trip.
 """
