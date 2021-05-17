@@ -12,7 +12,7 @@ def __check_input(w: str):
     check if words are ASCII only, not empty, and don't contain whitespace
     """
     assert all(ord(c) < 128 for c in w)
-    assert not ' ' in w
+    assert ' ' not in w
     assert w != ""
 
 
@@ -44,9 +44,11 @@ def run():
     input_words = __read_input_words(f)
     number_of_pref = int(f.readline())
     assert (0 < number_of_pref < 1000000)
+
     for _ in range(number_of_pref):
         prefix = f.readline().strip()
         assert len(prefix) <= 42
+
         __check_input(prefix)
         __print_pref_matches(input_words, prefix)
 
