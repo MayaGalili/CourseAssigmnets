@@ -2,8 +2,7 @@ import sys
 import numpy as np
 
 """
-TASK 03 - 
-for a given dictionary of words and prefixes returns up to 10 words 
+TASK 03 - for a given dictionary of words and prefixes returns up to 10 words 
 starting with that prefixes. each prefix match in a separate line
 """
 
@@ -31,8 +30,10 @@ def __read_input_words(f) -> list:
 
 def __print_pref_matches(words, prefix):
     res = list()
+
     for i in words:
-        if prefix in i:
+
+        if i.startswith(prefix):
             if len(res) > 10:
                 break
             else:
@@ -45,11 +46,9 @@ def run():
     input_words = __read_input_words(f)
     number_of_pref = int(f.readline())
     assert (0 < number_of_pref < 1000000)
-
     for _ in range(number_of_pref):
         prefix = f.readline().strip()
         assert len(prefix) <= 42
-
         __check_input(prefix)
         __print_pref_matches(input_words, prefix)
 

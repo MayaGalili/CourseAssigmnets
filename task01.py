@@ -4,9 +4,9 @@ import numpy as np
 """
 TASK 01 - 
 For the given integer N, print snake matrix.
-Odd lines should be increasing, 
-even lines should be decreasing.
+Odd lines should be increasing, even lines should be decreasing.
 """
+
 
 def run():
     n = int(sys.stdin.readline())
