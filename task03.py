@@ -1,6 +1,11 @@
 import sys
 import numpy as np
 
+"""
+TASK 03 - for a given dictionary of words and prefixes returns up to 10 words 
+starting with that prefixes. each prefix match in a separate line
+"""
+
 
 def __check_input(w: str):
     """
