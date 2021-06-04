@@ -1,5 +1,6 @@
 """
-Given flights prices between different airports, write a function which finds M cheapest connections between a source and a destination airport. There will be at most 2000 different airports.
+Given flights prices between different airports, write a function which finds M cheapest connections
+between a source and a destination airport. There will be at most 2000 different airports.
 
 Input
 -----
@@ -7,20 +8,24 @@ The first line contains N, the number of airports pairs with a flight price. 0 <
 
 Then the subsequent N lines contain three words per line,
 
-both ASCII-only and case sensitive. The first word is the source airport, the second word is the destination airport of the flight and the third word is the price of the flight from the source to the destination airport.
+both ASCII-only and case sensitive. The first word is the source airport, the second word is the
+destination airport of the flight and the third word is the price of the flight from the source to
+the destination airport.
 
 The price is always a positive integer number.
 
 
+Please note that flights are one-way, maybe there is no flight in the opposite direction.
+Flights can be listed in any order, but without duplicates.
 
-Please note that flights are one-way, maybe there is no flight in the opposite direction. Flights can be listed in any order, but without duplicates.
 
+The next line contains M, the number of connections which should be in the output (unless there
+are less than M connections, in which case all should be in the output). 0 < M < 1000000.
 
-
-The next line contains M, the number of connections which should be in the output (unless there are less than M connections, in which case all should be in the output). 0 < M < 1000000.
-
-The subsequent line contains two words, both ASCII-only and case sensitive. The first word is the source airport and the second word is the final destination airport of the trip. In addition to these airports, a trip can contain multiple stopover airports in-between. Trip source and destination can't be the same.
-
+The subsequent line contains two words, both ASCII-only and case sensitive.
+The first word is the source airport and the second word is the final destination airport of the trip.
+In addition to these airports, a trip can contain multiple stopover airports in-between.
+Trip source and destination can't be the same.
 
 
 Output
@@ -36,51 +41,30 @@ Example
 Input
 
 13
-
 SFO JFK 500
-
 JFK WAW 800
-
 JFK BSL 700
-
 JFK ZRH 850
-
 ZRH BSL 300
-
 SFO HEL 1000
-
 SFO MUC 1100
-
 SFO LHR 1100
-
 MUC ZRH 500
-
 LHR BSL 1
-
 LHR ZRH 100
-
 BSL ZRH 1
-
 SFO ZRH 5000
-
 10
-
 SFO ZRH
-
 
 
 Output
 
 SFO LHR BSL ZRH 1102
-
 SFO LHR ZRH 1200
-
 SFO JFK BSL ZRH 1201
-
 SFO JFK ZRH 1350
-
 SFO MUC ZRH 1600
-
 SFO ZRH 5000
 
 
@@ -103,25 +87,26 @@ There are five other possibilities to get from SFO to ZRH, with fewer connection
 
 We were asked to provide 10 connections, but as there are only 6 connections between SFO and ZRH, we output all of them.
 
-code.py
-New
-Full Screen
-
 """
 
 import sys
 
+
 def find_connections():
-    # write your code here
+    # find shortest (<=10) path between 2 airports and calc the total price
     pass
+
 
 def main():
     flights = []
+    f = sys.stdin
 
-    number_of_flights = int(sys.stdin.readline())
+    number_of_flights = int(f.readline())
     for i in range(number_of_flights):
+        fr, to, price = f.readline().split()
         # write your code to read the flights information
-        pass
+        # graph of flight prices
+        # E = flight prices exist. V = Airports
 
     limit = int(sys.stdin.readline())
     source_airport, destination_airport = sys.stdin.readline().strip().split(' ')
