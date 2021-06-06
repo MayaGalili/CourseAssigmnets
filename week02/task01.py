@@ -1,6 +1,11 @@
 """
 Given a dictionary containing N words and a new set of Q query words, your goal is to print the
-smallest words from the original dictionary for which the query word is a prefix. The Q words were typed really fast and  some typos may have occurred. You should find matches considering at most 1 typo only. A “typo” means an incorrect character was typed instead of the correct one. For example, “the -> tje” or “test -> tast” have 1 typo, but “the -> teh” has 2 typos. Additional and missing characters, such as "the" -> "thje" and "the" -> "te", are not considered typos.
+smallest words from the original dictionary for which the query word is a prefix.
+The Q words were typed really fast and  some typos may have occurred.
+You should find matches considering at most 1 typo only.
+A “typo” means an incorrect character was typed instead of the correct one.
+For example, “the -> tje” or “test -> tast” have 1 typo, but “the -> teh” has 2 typos.
+Additional and missing characters, such as "the" -> "thje" and "the" -> "te", are not considered typos.
 
 If there are more than 10 matches, print only the smallest 10 matches. Otherwise print all of them.
 
@@ -33,33 +38,19 @@ See the samples for further elaboration.
 Examples
 --------------
 Input
-
 7
-
-tech
-
+the
 computer
-
 technology
-
 elevate
-
 compute
-
 elevator
-
 company
-
 4
-
-tevh
-
+the
 new
-
 techn
-
 compa
-
 
 
 Output
@@ -85,6 +76,68 @@ It also matches "compute" and "computer" since the prefixes "compu" and "compa" 
 
 """
 
+class TrieNode:
+
+    # Trie node class
+    def __init__(self):
+        self.children = [None] * 26
+
+        # isEndOfWord is True if node represent the end of the word
+        self.isEndOfWord = False
+
+
+class Trie:
+
+    # Trie data structure class
+    def __init__(self):
+        self.root = self.getNode()
+
+    def getNode(self):
+
+        # Returns new trie node (initialized to NULLs)
+        return TrieNode()
+
+    def _charToIndex(self, ch):
+
+        # private helper function
+        # Converts key current character into index
+        # use only 'a' through 'z' and lower case
+
+        return ord(ch) - ord('a')
+
+    def insert(self, key):
+
+        # If not present, inserts key into trie
+        # If the key is prefix of trie node,
+        # just marks leaf node
+        pCrawl = self.root
+        length = len(key)
+        for level in range(length):
+            index = self._charToIndex(key[level])
+
+            # if current character is not present
+            if not pCrawl.children[index]:
+                pCrawl.children[index] = self.getNode()
+            pCrawl = pCrawl.children[index]
+
+        # mark last node as leaf
+        pCrawl.isEndOfWord = True
+
+    def search(self, key):
+
+        # Search key in the trie
+        # Returns true if key presents
+        # in trie, else false
+        pCrawl = self.root
+        length = len(key)
+        for level in range(length):
+            index = self._charToIndex(key[level])
+            if not pCrawl.children[index]:
+                return False
+            pCrawl = pCrawl.children[index]
+
+        return pCrawl != None and pCrawl.isEndOfWord
+
 
 def solve(dictionary, queries):
     # Build prefix tree from the dictionary
@@ -92,7 +145,17 @@ def solve(dictionary, queries):
     # during the search - if 1 typo - continue in the tree search
     # if the query ended during the search - add it to the query result list
     # Write your code here ...
-    pass
+    # Trie object
+    output = ["Not present in trie",
+              "Present in trie"]
+    t = Trie()
+
+    # Construct trie
+    for key in dictionary:
+        t.insert(key)
+
+    for q in queries:
+        print(output[t.search(q)])
 
 
 def main():
