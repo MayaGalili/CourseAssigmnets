@@ -126,8 +126,7 @@ class Trie:
     def search(self, key):
 
         # Search key in the trie
-        # Returns true if key presents
-        # in trie, else false
+        # Returns true if key presents in trie, else false
         pCrawl = self.root
         length = len(key)
         for level in range(length):
