@@ -9,6 +9,8 @@ Odd lines should be increasing, even lines should be decreasing.
 
 
 def run():
+    print("Let's play, give me a number between 1 and 50 and I'll print a snake matrix in that dimensions.\n"
+          "Choose a number and press enter:")
     n = int(sys.stdin.readline())
     assert n <= 50
     assert n >= 1

@@ -57,8 +57,8 @@ The result is [1, 2, 2, 3, 3, 3, 4, 4, 5].
 
 import sys
 
-def merge_2_arr(ta, tb) -> list:
 
+def merge_2_arr(ta, tb) -> list:
     ai = 0
     bi = 0
     a = len(ta)
@@ -95,13 +95,13 @@ def merge_2_arr(ta, tb) -> list:
 
     return res
 
+
 def run(debug_mode: bool):
     if not debug_mode:
         _ = int(sys.stdin.readline())
         lengths = [int(el) for el in sys.stdin.readline().split()]
         arrays = [[int(el) for el in sys.stdin.readline().split()]
                   for _ in lengths]
-
 
     else:
         # test 1 -
@@ -110,14 +110,11 @@ def run(debug_mode: bool):
         # test 6 -
         arrays = [[1, 2, 3]] * 1000
 
-
-
     while len(arrays) > 1:
         arr1 = arrays.pop()
         arr2 = arrays.pop()
         arr3 = merge_2_arr(arr1, arr2)
         arrays.append(arr3)
-
 
     merged = arrays.pop()
     res = ' '.join([str(elem) for elem in merged])
@@ -128,7 +125,7 @@ def run(debug_mode: bool):
         # assert merged == [1, 2, 2, 3, 3, 3, 4, 4, 5]
 
         # test 6 -
-        assert merged == [1]*1000 + [2]*1000 + [3]*1000
+        assert merged == [1] * 1000 + [2] * 1000 + [3] * 1000
 
 
 if __name__ == "__main__":
